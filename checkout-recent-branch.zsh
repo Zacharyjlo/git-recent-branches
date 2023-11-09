@@ -15,8 +15,10 @@ function get_recent_branches() {
   echo "${recent_branches[@]:0:$count}"
 }
 
-local branches=($(get_recent_branches "$1"))
-local length=${1:-10}
+branch_limit=${1:-10}
+
+local branches=($(get_recent_branches "$branch_limit"))
+length=${#branches[@]}
 echo "\n\e[1;34mSelect a branch by number:\e[0m"
 echo "\e[1;32m─────────────────────────────\e[0m"
 for ((i=1; i<=$length; i++)); do
