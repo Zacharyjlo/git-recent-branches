@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 function get_recent_branches() {
+  local count=${1:-10}
   local merged_branches=$(git for-each-ref --merged main refs/heads/ --format '%(refname:short)')
   local all_branches=$(git branch --list | tr -d ' ')
   local recent_branches=()
@@ -11,10 +12,10 @@ function get_recent_branches() {
       fi
     fi
   done < <(git reflog show --oneline -n 500 | grep 'checkout: moving' | awk '{print $NF}' | tr -d ' ')
-  echo "${recent_branches[@]}"
+  echo "${recent_branches[@:0:$count]}"
 }
 
-local branches=($(get_recent_branches))
+local branches=($(get_recent_branches "$1"))
 local length=${1:-10}
 echo "\n\e[1;34mSelect a branch by number:\e[0m"
 echo "\e[1;32m─────────────────────────────\e[0m"
