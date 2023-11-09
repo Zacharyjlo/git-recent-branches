@@ -23,7 +23,7 @@ local branches=($(get_recent_branches "$1"))
 local length=${#branches[@]}
 echo "\n\e[1;34mSelect a branch by number:\e[0m"
 echo "\e[1;32m─────────────────────────────\e[0m"
-for ((i=0; i<$length; i++)); do
+for ((i=1; i<=$length; i++)); do
   echo "\e[1;36m$((i+1)).\e[0m ${branches[$i]}"
 done
 echo "\e[1;32m─────────────────────────────\e[0m"
