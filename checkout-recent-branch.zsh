@@ -11,7 +11,6 @@ function get_recent_branches() {
       fi
     fi
   done < <(git reflog show --oneline | grep 'checkout: moving' | awk '{print $NF}' | tr -d ' ')
-  echo "$recent_branches"
   echo "${recent_branches[@]}"
 }
 
@@ -23,8 +22,6 @@ display_count=$(( length < branch_limit ? length : branch_limit ))
 local branches=($(get_recent_branches "$1"))
 echo "\n\e[1;34mSelect a branch by number:\e[0m"
 echo "\e[1;32m─────────────────────────────\e[0m"
-echo "$display_count"
-echo "$length"
 for ((i=1; i<=$display_count; i++)); do
   echo "\e[1;36m$((i)).\e[0m ${branches[$i]}"
 done
