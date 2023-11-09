@@ -11,7 +11,7 @@ function get_recent_branches() {
         recent_branches+=("$branch")
       fi
     fi
-  done < <(git reflog show --oneline -n 500 | grep 'checkout: moving' | awk '{print $NF}' | tr -d ' ')
+  done < <(git reflog show --oneline -n 1000 | grep 'checkout: moving' | awk '{print $NF}' | tr -d ' ')
   echo "${recent_branches[@]}"
 }
 
