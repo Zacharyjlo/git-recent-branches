@@ -1,1 +1,1 @@
-alias grbr='$ZSH/custom/plugins/git-recent-branches/checkout-recent-branch.zsh'
+alias grbr="${0:A:h}/checkout-recent-branch.zsh"
